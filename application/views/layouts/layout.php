@@ -50,13 +50,20 @@
                                     <?php
                                 }?>
                             ><a href="<?php echo site_url('siswa');?>">Siswa</a></li>
+                             <li
+                                <?php if( $this->uri->segment(1) == 'panitia'){
+                                    ?>
+                                    class="active"
+                                    <?php
+                                }?>
+                            ><a href="<?php echo site_url('panitia');?>">Panitia</a></li>
                             <li
                                 <?php if( $this->uri->segment(1) == 'rangking'){
                                     ?>
                                     class="active"
                                     <?php
                                 }?>
-                            ><a href="<?php echo site_url('rangking');?>">Rangking</a></li>
+                            ><a href="<?php echo site_url('rangking');?>">Laporan</a></li>
                             <li>
                                 <a onclick="return confirm('Apakah Anda yakin?')" href="<?php echo site_url('login/log_out');?>"> Logout</a>
                             </li>

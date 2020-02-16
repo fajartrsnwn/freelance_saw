@@ -17,7 +17,7 @@ class Rangking extends MY_Controller
         $this->load->model('MNilai');
         $this->load->model('MSiswa');
         $this->load->model('MSAW');
-        $this->page->setTitle('Rangking');
+        $this->page->setTitle('Laporan');
     }
 
     public function index()
@@ -100,6 +100,88 @@ class Rangking extends MY_Controller
         $this->MSAW->dropTable();
 
         loadPage('saw/index');
+    }
+
+        public function detail()
+    {
+        $siswa = $this->MSiswa->getAll();
+
+        if($siswa == null){
+            redirect('rangking/noData');
+        }
+        /**
+         * Menghapus table SAW jika ada
+         */
+        $this->MSAW->dropTable();
+
+        /**
+         * $kriteria data dari table kriteria
+         */
+        $kriteria = $this->MKriteria->getAll();
+
+        /**
+         * membuat table SAW berdasarkan data dari table kriteria
+         * menginputkan semua data nilai
+         */
+        $this->MSAW->createTable($kriteria);
+
+        /**
+         * Ambil data dari table SAW untuk perhitungan awal
+         */
+        $table1 = $this->initialTableSAW($siswa);
+        $this->page->setData('table1', $table1);
+
+
+        /**
+         * mengambil sifat kriteria
+         * @var $dataSifat array
+         */
+        $dataSifat = $this->getDataSifat();
+        $this->page->setData('dataSifat', $dataSifat);
+
+        /**
+         * Mengambil nilai maksimal dan minimal berdasarkan sifat
+         */
+        $dataValueMinMax = $this->getVlueMinMax($dataSifat);
+        $this->page->setData('valueMinMax', $dataValueMinMax);
+
+        /**
+         * Proses 1 ubah data berdasarkan sifat
+         */
+
+        $table2 = $this->getCountBySifat($dataSifat,$dataValueMinMax);
+        $this->page->setData('table2', $table2);
+
+        /**
+         * Hitung perkalian bobot dengan nilai kriteria
+         */
+        $bobot = $this->MKriteria->getBobotKriteria();
+        $this->page->setData('bobot', $bobot);
+        $table3 = $this->getCountByBobot($bobot);
+        $this->page->setData('table3', $table3);
+
+        /**
+         * Add kolom total dan rangking
+         */
+        $this->MSAW->addColumnTotalRangking();
+
+        /**
+         * Menghitung nilai total
+         */
+        $this->countTotal();
+
+        /**
+         * Mengambil data yang sudah di rangking
+         */
+        $tableFinal = $this->getDataRangking();
+        $this->page->setData('tableFinal', $tableFinal);
+
+        /**
+         * Menghapus table SAW
+         */
+        $this->MSAW->dropTable();
+
+        loadPage('saw/detail');
     }
 
     public function noData()

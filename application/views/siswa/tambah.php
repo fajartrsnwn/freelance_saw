@@ -92,7 +92,7 @@
         <div class="pull-right">
             <div class="col-md-12">
                 <button class="btn btn-primary" type="submit">Save</button>
-                <a class="btn btn-danger" href="<?php site_url('siswa') ?>" role="button">Batal</a>
+                <a class="btn btn-danger" href="<?php echo site_url('siswa');?>" role="button">Batal</a>
 
             </div>
         </div>
