@@ -1,3 +1,4 @@
+<?php $this->load->view("validasi_session.php")?>
 <div class="page-header">
     <h1>Halaman Hitung Rangking </h1>
 </div>
@@ -185,7 +186,7 @@
                         ?>
                     </table>
                 </div>
-                <h2>Table 4 - Dijumlah sesuai dengan universitas dan di dapat hasil rangking</h2>
+                <h2>Table 4 - Dijumlah sesuai dengan Siswa dan di dapat hasil rangking</h2>
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover">
                         <tr class="active">
@@ -230,8 +231,8 @@
                         ?>
                         <div class="alert alert-success" role="alert">
                             <h4><b>Kesimpulan : </b> Dari hasil perhitungan yang dilakukan menggunakan metode SAW
-                                universitas terbaik untuk di pilih adalah
-                                <?php echo $value->Universitas ?> dengan nilai <?php echo $value->Total ?>
+                                Siswa terbaik untuk di pilih adalah
+                                <?php echo $value->Siswa ?> dengan nilai <?php echo $value->Total ?>
                             </h4>
                         </div>
                         <?php

@@ -1,3 +1,4 @@
+<?php $this->load->view("validasi_session.php")?>
 <div class="page-header">
     <h1>Halaman Olah Kriteria</h1>
 </div>

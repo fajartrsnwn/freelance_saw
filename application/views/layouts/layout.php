@@ -29,7 +29,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand active" href="<?php echo site_url()?>">SPK UNIVERSITAS</a>
+                        <a class="navbar-brand active" href="<?php echo site_url()?>welcome/index">SPK PPDB</a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -44,12 +44,12 @@
                             ><a href="<?php echo site_url('kriteria');?>">Kriteria</a></li>
                             <li
                             <li
-                                <?php if( $this->uri->segment(1) == 'universitas'){
+                                <?php if( $this->uri->segment(1) == 'siswa'){
                                     ?>
                                     class="active"
                                     <?php
                                 }?>
-                            ><a href="<?php echo site_url('universitas');?>">Universitas</a></li>
+                            ><a href="<?php echo site_url('siswa');?>">Siswa</a></li>
                             <li
                                 <?php if( $this->uri->segment(1) == 'rangking'){
                                     ?>
@@ -57,6 +57,9 @@
                                     <?php
                                 }?>
                             ><a href="<?php echo site_url('rangking');?>">Rangking</a></li>
+                            <li>
+                                <a onclick="return confirm('Apakah Anda yakin?')" href="<?php echo site_url('login/log_out');?>"> Logout</a>
+                            </li>
                         </ul>
 
                     </div><!-- /.navbar-collapse -->
