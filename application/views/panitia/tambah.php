@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h1>Tambah panitia</h1>
+    <h1>Halaman panitia</h1>
 </div>
 <div class="col-md-12">
     <?php echo form_open() ?>
@@ -26,7 +26,7 @@
                 <?php echo form_open('',array('class' => 'form-horizontal'))?>
                     <div class="form-group">
                         <label for="panitia">NIP</label>
-                        <input name="nip" type="number" class="form-control" id="nip"
+                        <input readonly="" name="nip" type="number" class="form-control" id="nip"
                                value="<?php echo isset($dataView[0]['nip']) ? $dataView[0]['nip'] : ''?>"
                                placeholder="nip">
                     </div>
@@ -62,7 +62,9 @@
         <div class="pull-right">
             <div class="col-md-12">
                 <button class="btn btn-primary" type="submit">Save</button>
+                <?php if ($this->session->userdata['logged_in']['role'] == 'Administrator') { ?>
                 <a class="btn btn-danger" href="<?php echo site_url('panitia');?>" role="button">Batal</a>
+                <?php } ?>
 
             </div>
         </div>
