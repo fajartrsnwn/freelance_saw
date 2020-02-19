@@ -6,11 +6,6 @@
     <div class="row">
         <div class="errors">
             <?php
-//            dump($nilaisiswa);
-//            dump($dataView);
-//            foreach ($nilaisiswa as $item => $value) {
-//                echo $value->nilai;
-//            }
             $errors = $this->session->flashdata('errors');
             if (isset($errors)) {
                 foreach ($errors as $error) {
@@ -32,6 +27,24 @@
                         <input name="siswa" type="text" class="form-control" id="siswa"
                                value="<?php echo isset($nilaiSiswa[0]->siswa) ? $nilaiSiswa[0]->siswa : ''?>"
                                placeholder="nama siswa">
+                    </div>
+                    <div class="form-group">
+                        <label for="siswa">NISN</label>
+                        <input name="nisn" type="text" class="form-control" id="siswa"
+                               value="<?php echo isset($nilaiSiswa[0]->nisn) ? $nilaiSiswa[0]->nisn : ''?>"
+                               placeholder="nisn">
+                    </div>
+                    <div class="form-group">
+                        <label for="siswa">Alamat</label>
+                        <input name="alamat" type="text" class="form-control" id="siswa"
+                               value="<?php echo isset($nilaiSiswa[0]->alamat) ? $nilaiSiswa[0]->alamat : ''?>"
+                               placeholder="Alamat">
+                    </div>
+                    <div class="form-group">
+                        <label for="siswa">Tanggal Lahir</label>
+                        <input name="tanggal_lahir" type="date" class="form-control" id="siswa"
+                               value="<?php echo isset($nilaiSiswa[0]->tanggal_lahir) ? $nilaiSiswa[0]->tanggal_lahir : ''?>"
+                               placeholder="Tanggal Lahir">
                     </div>
                 </div>
             </div>

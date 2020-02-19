@@ -9,11 +9,10 @@ Class Login extends CI_Controller {
 		$this->load->model('MLogin');
 	}
 
-// Show login page
 	public function index() {
 		$this->load->view('login/index');
 	}
-// Check for user login process
+
 	public function process() {
 		
 		$this->form_validation->set_rules('user_username', 'user_username', 'trim|required');
@@ -21,6 +20,7 @@ Class Login extends CI_Controller {
 
 		$username = $this->input->post('user_username');
 		$password = $this->input->post('user_password');
+		$role 	  = $this->input->post('role');
 
 		if ($this->form_validation->run() == FALSE) {
 			if(isset($this->session->userdata['logged_in'])){
@@ -33,6 +33,11 @@ Class Login extends CI_Controller {
 				'user_username' => $username,
 				'user_password' => md5($password)
 			);
+
+
+			//split role here
+			if ($role == 1) {
+
 			$result = $this->MLogin->login_backoffice($data);
 			if ($result == TRUE) {
 
@@ -41,10 +46,11 @@ Class Login extends CI_Controller {
 
 				if ($result != false) {
 					$session_data = array(
-						'user_id' => $result[0]->id,
+						'user_id' 		=> $result[0]->id,
 						'user_username' => $result[0]->username,
 						'user_password' => $result[0]->password,
-						'user_email' => $result[0]->email
+						'user_email' 	=> $result[0]->email,
+						'role' 			=> 'Administrator'
 					);
 					// Add user data in session
 					$this->session->set_userdata('logged_in', $session_data);
@@ -62,6 +68,40 @@ Class Login extends CI_Controller {
 				);
 				$this->load->view('login/index', $data);
 			}
+			// split
+			} else {
+			$result = $this->MLogin->login_backoffice_panitia($data);
+			if ($result == TRUE) {
+
+				$username = $this->input->post('user_username');
+				$result = $this->MLogin->read_user_information_panitia($username);
+
+				if ($result != false) {
+					$session_data = array(
+						'user_id' 		=> $result[0]->kdPanitia,
+						'user_username' => $result[0]->nip,
+						'user_password' => $result[0]->password,
+						'user_nama' 	=> $result[0]->nama,
+						'role'			=> 'Panitia'
+					);
+					// Add user data in session
+					$this->session->set_userdata('logged_in', $session_data);
+
+					redirect('welcome/index',$data);
+				} else {
+					echo "string";
+				}
+			} else {
+				$data = array(
+					'error_message' => '<div class="alert alert-danger alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                Invalid Username or Password.
+                                </div>'
+				);
+				$this->load->view('login/index', $data);
+			}
+			}
+
 		}
 	}
 

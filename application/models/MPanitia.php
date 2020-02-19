@@ -26,7 +26,8 @@ class MPanitia extends CI_Model{
         $data = array(
             'nip' => $this->nip,
             'nama' => $this->nama,
-            'jabatan' => $this->jabatan
+            'jabatan' => $this->jabatan,
+            'password' => $this->password
         );
 
         return $data;

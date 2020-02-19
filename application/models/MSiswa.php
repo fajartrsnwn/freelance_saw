@@ -21,7 +21,10 @@ class MSiswa extends CI_Model{
 
     private function getData(){
         $data = array(
-            'siswa' => $this->siswa
+            'siswa' => $this->siswa,
+            'nisn' => $this->nisn,
+            'alamat' => $this->alamat,
+            'tanggal_lahir' => $this->tanggal_lahir
         );
 
         return $data;

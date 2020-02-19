@@ -33,6 +33,10 @@ class Siswa extends MY_Controller
         if ($id == null) {
             if (count($_POST)) {
                 $this->form_validation->set_rules('siswa', '', 'trim|required');
+                $this->form_validation->set_rules('nisn', '', 'trim|required');
+                $this->form_validation->set_rules('alamat', '', 'trim|required');
+                $this->form_validation->set_rules('tanggal_lahir', '', 'trim|required');
+
                 if ($this->form_validation->run() == false) {
                     $errors = $this->form_validation->error_array();
                     $this->session->set_flashdata('errors', $errors);
@@ -40,9 +44,17 @@ class Siswa extends MY_Controller
                 } else {
 
                     $siswa = $this->input->post('siswa');
+                    $nisn = $this->input->post('nisn');
+                    $alamat = $this->input->post('alamat');
+                    $tanggal_lahir = $this->input->post('tanggal_lahir');
+
                     $nilai = $this->input->post('nilai');
 
                     $this->MSiswa->siswa = $siswa;
+                    $this->MSiswa->nisn = $nisn;
+                    $this->MSiswa->alamat = $alamat;
+                    $this->MSiswa->tanggal_lahir = $tanggal_lahir;
+
                     if ($this->MSiswa->insert() == true) {
                         $success = false;
                         $kdSiswa = $this->MSiswa->getLastID()->kdSiswa;
@@ -73,10 +85,17 @@ class Siswa extends MY_Controller
                 dump($kdSiswa);
                 if($kdSiswa > 0){
                     $siswa = $this->input->post('siswa');
+                    $nisn = $this->input->post('nisn');
+                    $alamat = $this->input->post('alamat');
+                    $tanggal_lahir = $this->input->post('tanggal_lahir');
+
                     $nilai = $this->input->post('nilai');
                     $where = array('kdSiswa' => $kdSiswa);
-                    dump($where);
+                    // dump($where);
                     $this->MSiswa->siswa = $siswa;
+                    $this->MSiswa->nisn = $nisn;
+                    $this->MSiswa->alamat = $alamat;
+                    $this->MSiswa->tanggal_lahir = $tanggal_lahir;
                     // dump($siswa);
                     if($this->MSiswa->update($where) == true){
                         $success = true;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 16, 2020 at 04:10 PM
+-- Generation Time: Feb 19, 2020 at 03:27 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 5.6.40
 
@@ -21,6 +21,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `freelance_saw`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `no_telp` varchar(100) DEFAULT NULL,
+  `sex` varchar(100) DEFAULT NULL,
+  `alamat_jalan` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `password`, `email`, `no_telp`, `sex`, `alamat_jalan`) VALUES
+(1, 'superadmin', '81dc9bdb52d04dc20036dbd8313ed055', 'superadmin@spk.com', '089876765654', 'L', 'Jalan sama aku, nikah sama dia');
 
 -- --------------------------------------------------------
 
@@ -93,39 +116,18 @@ CREATE TABLE `panitia` (
   `kdPanitia` int(11) NOT NULL,
   `nip` varchar(20) DEFAULT NULL,
   `nama` varchar(100) DEFAULT NULL,
-  `jabatan` varchar(100) DEFAULT NULL
+  `jabatan` varchar(100) DEFAULT NULL,
+  `password` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `panitia`
 --
 
-INSERT INTO `panitia` (`kdPanitia`, `nip`, `nama`, `jabatan`) VALUES
-(1, '3404011404570000', 'Superadmin', 'Superadmin'),
-(3, '3577027001830001', 'Adm BPJS/Casemix', 'Programmer');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pengguna`
---
-
-CREATE TABLE `pengguna` (
-  `id` int(11) NOT NULL,
-  `username` varchar(100) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `no_telp` varchar(100) DEFAULT NULL,
-  `sex` varchar(100) DEFAULT NULL,
-  `alamat_jalan` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pengguna`
---
-
-INSERT INTO `pengguna` (`id`, `username`, `password`, `email`, `no_telp`, `sex`, `alamat_jalan`) VALUES
-(1, 'superadmin', '81dc9bdb52d04dc20036dbd8313ed055', 'superadmin@spk.com', '089876765654', 'L', 'Jalan sama aku, nikah sama dia');
+INSERT INTO `panitia` (`kdPanitia`, `nip`, `nama`, `jabatan`, `password`) VALUES
+(1, '3404011404570000', 'Superadministrator', 'Superadministrator', 'c4ca4238a0b923820dcc509a6f75849b'),
+(3, '3577027001830001', 'Adm BPJS/Casemix', 'Programmer', NULL),
+(5, '3402160505560005', 'Bed Unit Test', 'Pendaftaran', '81dc9bdb52d04dc20036dbd8313ed055');
 
 -- --------------------------------------------------------
 
@@ -135,19 +137,22 @@ INSERT INTO `pengguna` (`id`, `username`, `password`, `email`, `no_telp`, `sex`,
 
 CREATE TABLE `siswa` (
   `kdSiswa` int(11) NOT NULL,
-  `siswa` varchar(50) NOT NULL
+  `siswa` varchar(50) NOT NULL,
+  `nisn` int(20) DEFAULT NULL,
+  `alamat` text,
+  `tanggal_lahir` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`kdSiswa`, `siswa`) VALUES
-(8, 'A1'),
-(9, 'A2'),
-(10, 'A3'),
-(11, 'A4'),
-(12, 'A5');
+INSERT INTO `siswa` (`kdSiswa`, `siswa`, `nisn`, `alamat`, `tanggal_lahir`) VALUES
+(8, 'A1', 123, 'alamat', '2020-02-19'),
+(9, 'A2', NULL, NULL, NULL),
+(10, 'A3', NULL, NULL, NULL),
+(11, 'A4', NULL, NULL, NULL),
+(12, 'A5', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -193,6 +198,12 @@ INSERT INTO `subkriteria` (`kdSubKriteria`, `subKriteria`, `value`, `kdKriteria`
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `kriteria`
 --
 ALTER TABLE `kriteria`
@@ -212,12 +223,6 @@ ALTER TABLE `panitia`
   ADD PRIMARY KEY (`kdPanitia`);
 
 --
--- Indexes for table `pengguna`
---
-ALTER TABLE `pengguna`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `siswa`
 --
 ALTER TABLE `siswa`
@@ -235,6 +240,12 @@ ALTER TABLE `subkriteria`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
@@ -244,19 +255,13 @@ ALTER TABLE `kriteria`
 -- AUTO_INCREMENT for table `panitia`
 --
 ALTER TABLE `panitia`
-  MODIFY `kdPanitia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `pengguna`
---
-ALTER TABLE `pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `kdPanitia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `kdSiswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `kdSiswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `subkriteria`

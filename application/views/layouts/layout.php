@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <?php
-        $this->page->generateCss();
+    $this->page->generateCss();
     ?>
 
     <style>
@@ -34,59 +34,102 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li
-                             <?php if( $this->uri->segment(1) == 'kriteria'){
-                                 ?>
-                                    class="active"
-                                 <?php
-                             }?>
-                            ><a href="<?php echo site_url('kriteria');?>">Kriteria</a></li>
-                            <li
-                            <li
-                                <?php if( $this->uri->segment(1) == 'siswa'){
-                                    ?>
-                                    class="active"
-                                    <?php
-                                }?>
+                        <?php if ($this->session->userdata['logged_in']['role'] == 'Administrator') { ?>
+                            <ul class="nav navbar-nav">
+                                <li
+                                <?php if( $this->uri->segment(1) == 'kriteria'){
+                                   ?>
+                                   class="active"
+                                   <?php
+                               }?>
+                               ><a href="<?php echo site_url('kriteria');?>">Kriteria</a></li>
+                               <li
+                               <li
+                               <?php if( $this->uri->segment(1) == 'siswa'){
+                                ?>
+                                class="active"
+                                <?php
+                            }?>
                             ><a href="<?php echo site_url('siswa');?>">Siswa</a></li>
-                             <li
-                                <?php if( $this->uri->segment(1) == 'panitia'){
-                                    ?>
-                                    class="active"
-                                    <?php
-                                }?>
+                            <li
+                            <?php if( $this->uri->segment(1) == 'panitia'){
+                                ?>
+                                class="active"
+                                <?php
+                            }?>
                             ><a href="<?php echo site_url('panitia');?>">Panitia</a></li>
                             <li
-                                <?php if( $this->uri->segment(1) == 'rangking'){
-                                    ?>
-                                    class="active"
-                                    <?php
-                                }?>
+                            <?php if( $this->uri->segment(1) == 'rangking'){
+                                ?>
+                                class="active"
+                                <?php
+                            }?>
                             ><a href="<?php echo site_url('rangking');?>">Laporan</a></li>
+
+                            <li
+                            <?php if( $this->uri->segment(1) == 'profile'){
+                                ?>
+                                class="active"
+                                <?php
+                            }?>
+                            ><a href="#"><?php echo $this->session->userdata['logged_in']['user_username']?></a></li>
+
                             <li>
-                                <a onclick="return confirm('Apakah Anda yakin?')" href="<?php echo site_url('login/log_out');?>"> Logout</a>
+                                <a onclick="return confirm('Apakah Anda yakin?')" href="<?php echo site_url('login/log_out');?>">Logout</a>
                             </li>
+
                         </ul>
+                    <?php } else { ?>
+                        <ul class="nav navbar-nav">
+                           <li
+                           <li
+                           <?php if( $this->uri->segment(1) == 'siswa'){
+                            ?>
+                            class="active"
+                            <?php
+                        }?>
+                        ><a href="<?php echo site_url('siswa');?>">Siswa</a></li>
+                        <li
+                        <?php if( $this->uri->segment(1) == 'rangking'){
+                            ?>
+                            class="active"
+                            <?php
+                        }?>
+                        ><a href="<?php echo site_url('rangking');?>">Laporan</a></li>
 
-                    </div><!-- /.navbar-collapse -->
-                </div>
+                        <li
+                        <?php if( $this->uri->segment(1) == 'profile'){
+                            ?>
+                            class="active"
+                            <?php
+                        }?>
+                        ><a href="#"><?php echo $this->session->userdata['logged_in']['user_username']?></a></li>
+
+                        <li>
+                            <a onclick="return confirm('Apakah Anda yakin?')" href="<?php echo site_url('login/log_out');?>">Logout</a>
+                        </li>
+
+                    </ul>
+                <?php } ?>
+
+            </div><!-- /.navbar-collapse -->
+        </div>
 
 
-            </div>
-        </nav>
     </div>
+</nav>
+</div>
 
-    <div class="container">
-            <?php $this->load->view($view,$data);?>
-    </div>
+<div class="container">
+    <?php $this->load->view($view,$data);?>
+</div>
 
-    <script>
-        var base_url = "<?php echo site_url();?>";
-    </script>
-    <?php
-            $this->page->generateJs();
-    ?>
+<script>
+    var base_url = "<?php echo site_url();?>";
+</script>
+<?php
+$this->page->generateJs();
+?>
 
 </body>
 </html>

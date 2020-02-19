@@ -25,8 +25,11 @@
                         <thead>
                         <tr>
                             <th class="col-md-1">No</th>
-                            <th class="col-md-6">Siswa</th>
-                            <th class="col-md-5 ">Action</th>
+                            <th class="col-md-3">Siswa</th>
+                            <th class="col-md-3">NISN</th>
+                            <th class="col-md-4">Alamat</th>
+                            <th class="col-md-2">Tanggal Lahir</th>
+                            <th class="col-md-3 ">Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -41,6 +44,9 @@
                                 <tr>
                                     <td><?php echo $no++ ?></td>
                                     <td><?php echo $item->siswa ?></td>
+                                    <td><?php echo $item->nisn ?></td>
+                                    <td><?php echo $item->alamat ?></td>
+                                    <td><?php echo $item->tanggal_lahir ?></td>
                                     <td>
                                         <a class="btn btn-primary btn-xs"
                                            href="<?php echo site_url('siswa/tambah/' . $item->kdSiswa) ?>"

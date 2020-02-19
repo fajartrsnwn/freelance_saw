@@ -42,6 +42,18 @@
                                value="<?php echo isset($dataView[0]['jabatan']) ? $dataView[0]['jabatan'] : ''?>"
                                placeholder="nama jabatan">
                     </div>
+                    <hr>
+                    <span>*Tambah/Update password</span>
+                    <div class="form-group">
+                        <label for="panitia">Password</label>
+                        <input name="password" type="password" class="form-control" id="jabatan"
+                               placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="panitia">Re-type Password</label>
+                        <input name="password2" type="password" class="form-control" id="jabatan"
+                               placeholder="Re-type Password">
+                    </div>
                 <!-- </div> -->
                 <?php echo form_close()?>
             </div>

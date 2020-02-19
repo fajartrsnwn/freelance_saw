@@ -76,6 +76,15 @@ if (isset($this->session->userdata['logged_in'])) {
                 <input class="form-control" type="password" required="" name="user_password" placeholder="Password">
               </div>
             </div>
+             <div class="form-group">
+              <div class="col-xs-12">
+                <label>Role</label>
+                <select name="role" class="form-control">
+                  <option value="1">Administrator</option>
+                  <option value="2">Panitia</option>
+                </select>
+              </div>
+            </div>
      
               <div class="form-group text-center m-t-20">
                 <div class="col-xs-12">
@@ -84,7 +93,6 @@ if (isset($this->session->userdata['logged_in'])) {
               </div>
               <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
-               <!--    <div class="social"><a href="javascript:void(0)" class="btn  btn-facebook" data-toggle="tooltip"  title="Login with Facebook"> <i aria-hidden="true" class="fa fa-facebook"></i> </a> <a href="javascript:void(0)" class="btn btn-googleplus" data-toggle="tooltip"  title="Login with Google"> <i aria-hidden="true" class="fa fa-google-plus"></i> </a> </div> -->
                 </div>
               </div>
               <div class="form-group m-b-0">

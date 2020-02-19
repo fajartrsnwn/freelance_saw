@@ -54,6 +54,14 @@ class Panitia extends MY_Controller
                     $this->MPanitia->nama = $this->input->post('nama', true);
                     $this->MPanitia->jabatan = $this->input->post('jabatan', true);
 
+                    if (!empty($this->input->post('password')) ) {
+                      if ($this->input->post('password') != $this->input->post('password2')) {
+                            $this->session->set_flashdata('message','Password tidak cocok, silakan samakan password Anda :)');
+                        } else {
+                            $this->MPanitia->password = md5($this->input->post('password', true));
+                        }  
+                    }
+
                     if ($this->MPanitia->insert() == true) {
                         $this->session->set_flashdata('message','Berhasil menambah data :)');
                         redirect('panitia');
@@ -75,12 +83,22 @@ class Panitia extends MY_Controller
                     $this->MPanitia->nama = $this->input->post('nama', true);
                     $this->MPanitia->jabatan = $this->input->post('jabatan', true);
 
+
+                    if (!empty($this->input->post('password')) ) {
+                      if ($this->input->post('password') != $this->input->post('password2')) {
+                            $this->session->set_flashdata('message','Password tidak cocok, silakan samakan password Anda :)');
+                        } else {
+                            $this->MPanitia->password = md5($this->input->post('password', true));
+                        }  
+                    }
+
                     $where = array('kdPanitia' => $id);
                     $update = $this->MPanitia->update($where);
                     if($update){
                         $this->session->set_flashdata('message','Berhasil mengubah data :)');
                         redirect('panitia?update=true');
                     }else{
+                        $this->session->set_flashdata('message','Gagal mengubah data :)');
                         redirect('panitia?update=false');
                     }
                 }
