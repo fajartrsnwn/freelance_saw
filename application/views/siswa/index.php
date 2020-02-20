@@ -15,6 +15,13 @@
         <?php
     }
     ?>
+        <div class="row">
+        <div class="form-group">
+            <a href="<?php echo site_url('siswa/tambah') ?>" type="button" class="btn btn-primary">Tambah
+                siswa</a>
+        </div>
+
+    </div>
     <div class="row">
         <div class="panel panel-primary">
 
@@ -73,13 +80,7 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="form-group">
-            <a href="<?php echo site_url('siswa/tambah') ?>" type="button" class="btn btn-primary">Tambah
-                siswa</a>
-        </div>
 
-    </div>
 
 </div>
 

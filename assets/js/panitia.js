@@ -12,7 +12,7 @@ function hapus_panitia(id){
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
-            alert('Error adding / update data');
+            alert('Data gagal di ubah/di hapus');
         }
     });
 }

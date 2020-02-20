@@ -31,7 +31,7 @@ function edit_kriteria(id){
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
-            alert('Error adding / update data');
+            alert('Maaf, data gagal disimpan/diupdate, coba ulangi kembali.');
         }
     });
 }
@@ -64,7 +64,7 @@ function save_kriteria() {
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
-            alert('Error adding / update data');
+            alert('Maaf, data gagal disimpan/diupdate, coba ulangi kembali.');
 
         }
     });
@@ -101,7 +101,7 @@ function edit_item_kriteria(id){
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
-            alert('Error adding / update data');
+            alert('Maaf, data gagal disimpan/diupdate, coba ulangi kembali.');
         }
     });
 }
@@ -135,7 +135,7 @@ function save_item_kriteria() {
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
-            alert('Error adding / update data');
+            alert('Maaf, data gagal disimpan/diupdate, coba ulangi kembali.');
         }
     });
 }
@@ -150,7 +150,7 @@ function hapus_kriteria(id){
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
-                alert('Error adding / update data');
+                alert('Maaf, data tidak bisa dihapus karena sudah digunakan.');
             }
         });
 }

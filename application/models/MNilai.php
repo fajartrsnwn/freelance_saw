@@ -41,7 +41,7 @@ class MNilai extends CI_Model{
     public function getNilaiBySiswa($id)
     {
         $query = $this->db->query(
-            'select u.kdSiswa, u.siswa, k.kdKriteria, n.nilai from siswa u, nilai n, kriteria k, subkriteria sk where u.kdSiswa = n.kdSiswa AND k.kdKriteria = n.kdKriteria and k.kdKriteria = sk.kdKriteria and u.kdSiswa = '.$id.' GROUP by n.nilai '
+            'select u.*, k.kdKriteria, n.nilai from siswa u, nilai n, kriteria k, subkriteria sk where u.kdSiswa = n.kdSiswa AND k.kdKriteria = n.kdKriteria and k.kdKriteria = sk.kdKriteria and u.kdSiswa = '.$id.' GROUP by n.nilai '
         );
         if($query->num_rows() > 0){
             foreach ($query->result() as $row) {

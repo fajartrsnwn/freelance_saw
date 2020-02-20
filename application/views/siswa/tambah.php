@@ -19,9 +19,10 @@
             }
             ?>
         </div>
+
         <div class="panel panel-default">
             <div class="panel-body">
-                <div class="form-inline">
+                <?php echo form_open('',array('class' => 'form-horizontal'))?>
                     <div class="form-group">
                         <label for="siswa">Nama siswa</label>
                         <input name="siswa" type="text" class="form-control" id="siswa"
@@ -46,7 +47,8 @@
                                value="<?php echo isset($nilaiSiswa[0]->tanggal_lahir) ? $nilaiSiswa[0]->tanggal_lahir : ''?>"
                                placeholder="Tanggal Lahir">
                     </div>
-                </div>
+                <!-- </div> -->
+                <?php echo form_close()?>
             </div>
         </div>
 
