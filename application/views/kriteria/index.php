@@ -4,7 +4,6 @@
 <div class="page-header">
     <h1>Halaman Olah Kriteria</h1>
 </div>
-<div class="col-lg-12">
     <?php
     $msg = $this->session->flashdata('message');
     if (isset($msg)) {
@@ -16,6 +15,7 @@
         <?php
     }
     ?>
+<div class="col-lg-12">
     <div class="row">
         <div class="panel panel-primary">
             <!-- Default panel contents -->

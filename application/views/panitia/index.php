@@ -4,18 +4,22 @@
 <div class="page-header">
     <h1>Halaman Olah Panitia</h1>
 </div>
-<div class="col-lg-12">
-    <?php
-    $msg = $this->session->flashdata('message');
-    if (isset($msg)) {
-        ?>
-        <div class="alert alert-success alert-dismissable">
-            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-            <?php echo $msg; ?>
-        </div>
-        <?php
-    }
+ <?php
+   $msg = $this->session->flashdata('message');
+   if (isset($msg) && isset($_GET['update'])=='true') {
     ?>
+    <div class="alert alert-success alert-dismissable">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        <?php echo $msg; ?>
+    </div>
+    <?php
+} else if (isset($msg) && isset($_GET['update'])=='false') { ?>
+    <div class="alert alert-danger alert-dismissable">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        <?php echo $msg; ?>
+    </div>
+<?php } ?>
+<div class="col-lg-12">
         <div class="row">
         <div class="form-group">
             <a href="<?php echo site_url('panitia/tambah') ?>" type="button" class="btn btn-primary">Tambah panitia</a>

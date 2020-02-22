@@ -83,24 +83,51 @@ class Panitia extends MY_Controller
                     $this->MPanitia->nama = $this->input->post('nama', true);
                     $this->MPanitia->jabatan = $this->input->post('jabatan', true);
 
+                    if ($this->session->userdata['logged_in']['role'] == 'Administrator') {
 
-                    if (!empty($this->input->post('password')) ) {
-                      if ($this->input->post('password') != $this->input->post('password2')) {
-                            $this->session->set_flashdata('message','Password tidak cocok, silakan samakan password Anda :)');
-                        } else {
-                            $this->MPanitia->password = md5($this->input->post('password', true));
-                        }  
+                        if (!empty($this->input->post('password')) ) {
+                              if ($this->input->post('password') != $this->input->post('password2')) {
+                                $this->session->set_flashdata('message','Password tidak cocok, silakan samakan password Anda :)');
+                                redirect('panitia?update=false');
+                            } else {
+                                $this->MPanitia->password = md5($this->input->post('password', true));
+                            } 
+
+                        } 
+                        $where = array('kdPanitia' => $id);
+                        $update = $this->MPanitia->update($where);
+                            if($update){
+                                $this->session->set_flashdata('message','Berhasil mengubah data :)');
+                                redirect('panitia?update=true');
+                            }else{
+                                $this->session->set_flashdata('message','Gagal mengubah data :)');
+                                redirect('panitia?update=false');
+                            }
+
+                    } else {
+
+                        if (!empty($this->input->post('password')) ) {
+                              if ($this->input->post('password') != $this->input->post('password2')) {
+                                $this->session->set_flashdata('message','Password tidak cocok, silakan samakan password Anda :)');
+                                redirect(current_url().'?update=false');
+                            } else {
+                                $this->MPanitia->password = md5($this->input->post('password', true));
+                            }
+                        }
+                        $where = array('kdPanitia' => $id);
+                        $update = $this->MPanitia->update($where);
+                            if($update){
+                                $this->session->set_flashdata('message','Berhasil mengubah data :)');
+                                redirect(current_url().'?update=true');
+                            }else{
+                                $this->session->set_flashdata('message','Gagal mengubah data :)');
+                                redirect(current_url().'?update=false');
+                            }
+
                     }
 
-                    $where = array('kdPanitia' => $id);
-                    $update = $this->MPanitia->update($where);
-                    if($update){
-                        $this->session->set_flashdata('message','Berhasil mengubah data :)');
-                        redirect('panitia?update=true');
-                    }else{
-                        $this->session->set_flashdata('message','Gagal mengubah data :)');
-                        redirect('panitia?update=false');
-                    }
+                    
+
                 }
             }
             $data['dataView'] = $this->getDataUpdate($id); 
@@ -140,12 +167,14 @@ class Panitia extends MY_Controller
     {
         $dataView = array();
         $panitia = $this->MPanitia->getAll();
-        foreach ($panitia as $item) {
-            $dataView[$item->kdPanitia] = array(
-                'nip' => $item->nip,
-                'nama' => $item->nama,
-                'jabatan' => $item->jabatan
-            );
+        if (!empty($panitia)) {
+            foreach ($panitia as $item) {
+                $dataView[$item->kdPanitia] = array(
+                    'nip' => $item->nip,
+                    'nama' => $item->nama,
+                    'jabatan' => $item->jabatan
+                );
+            }
         }
 
         return $dataView;

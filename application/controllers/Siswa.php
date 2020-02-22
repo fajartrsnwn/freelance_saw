@@ -43,10 +43,18 @@ class Siswa extends MY_Controller
                     redirect(current_url());
                 } else {
 
+                    if ($this->MSiswa->getNisn($this->input->post('nisn')) == false) {
+                            $this->session->set_flashdata('message','NISN telah terdaftar dalam sistem :)');
+                            redirect(current_url().'?nisnCheck=false');
+                    }
+
                     $siswa = $this->input->post('siswa');
                     $nisn = $this->input->post('nisn');
                     $alamat = $this->input->post('alamat');
                     $tanggal_lahir = $this->input->post('tanggal_lahir');
+                    $jenis_kelamin = $this->input->post('jenis_kelamin');
+                    $tempat_lahir = $this->input->post('tempat_lahir');
+                    $sudah_di_nilai = $this->input->post('sudah_di_nilai');
 
                     $nilai = $this->input->post('nilai');
 
@@ -54,6 +62,10 @@ class Siswa extends MY_Controller
                     $this->MSiswa->nisn = $nisn;
                     $this->MSiswa->alamat = $alamat;
                     $this->MSiswa->tanggal_lahir = $tanggal_lahir;
+                    $this->MSiswa->jenis_kelamin = $jenis_kelamin;
+                    $this->MSiswa->tempat_lahir = $tempat_lahir;
+                    $this->MSiswa->sudah_di_nilai = $sudah_di_nilai;
+
 
                     if ($this->MSiswa->insert() == true) {
                         $success = false;
@@ -88,6 +100,10 @@ class Siswa extends MY_Controller
                     $nisn = $this->input->post('nisn');
                     $alamat = $this->input->post('alamat');
                     $tanggal_lahir = $this->input->post('tanggal_lahir');
+                    $jenis_kelamin = $this->input->post('jenis_kelamin');
+                    $tempat_lahir = $this->input->post('tempat_lahir');
+                    $sudah_di_nilai = $this->input->post('sudah_di_nilai');
+
 
                     $nilai = $this->input->post('nilai');
                     $where = array('kdSiswa' => $kdSiswa);
@@ -96,6 +112,9 @@ class Siswa extends MY_Controller
                     $this->MSiswa->nisn = $nisn;
                     $this->MSiswa->alamat = $alamat;
                     $this->MSiswa->tanggal_lahir = $tanggal_lahir;
+                    $this->MSiswa->jenis_kelamin = $jenis_kelamin;
+                    $this->MSiswa->tempat_lahir = $tempat_lahir;
+                    $this->MSiswa->sudah_di_nilai = $sudah_di_nilai;
                     // dump($siswa);
                     if($this->MSiswa->update($where) == true){
                         $success = true;

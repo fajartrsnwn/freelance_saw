@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 19, 2020 at 03:27 AM
+-- Generation Time: Feb 22, 2020 at 12:55 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 5.6.40
 
@@ -31,19 +31,15 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `username` varchar(100) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `no_telp` varchar(100) DEFAULT NULL,
-  `sex` varchar(100) DEFAULT NULL,
-  `alamat_jalan` text
+  `password` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `username`, `password`, `email`, `no_telp`, `sex`, `alamat_jalan`) VALUES
-(1, 'superadmin', '81dc9bdb52d04dc20036dbd8313ed055', 'superadmin@spk.com', '089876765654', 'L', 'Jalan sama aku, nikah sama dia');
+INSERT INTO `admin` (`id`, `username`, `password`) VALUES
+(1, '17511001', '81dc9bdb52d04dc20036dbd8313ed055');
 
 -- --------------------------------------------------------
 
@@ -66,7 +62,7 @@ INSERT INTO `kriteria` (`kdKriteria`, `kriteria`, `sifat`, `bobot`) VALUES
 (10, 'NilaiTesAkademik', 'B', 3),
 (11, 'NilaiTesWawancara', 'B', 2),
 (12, 'PenghasilanOrangTua', 'C', 3),
-(13, 'JumlahTanggunganOrangTua', 'B', 2);
+(16, 'JumlahTanggunganOrangTua', 'B', 2);
 
 -- --------------------------------------------------------
 
@@ -79,32 +75,6 @@ CREATE TABLE `nilai` (
   `kdKriteria` int(11) NOT NULL,
   `nilai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `nilai`
---
-
-INSERT INTO `nilai` (`kdSiswa`, `kdKriteria`, `nilai`) VALUES
-(8, 10, 3),
-(8, 11, 4),
-(8, 12, 2),
-(8, 13, 2),
-(9, 10, 4),
-(9, 11, 4),
-(9, 12, 3),
-(9, 13, 1),
-(10, 10, 3),
-(10, 11, 4),
-(10, 12, 3),
-(10, 13, 2),
-(11, 10, 3),
-(11, 11, 4),
-(11, 12, 3),
-(11, 13, 3),
-(12, 10, 4),
-(12, 11, 4),
-(12, 12, 4),
-(12, 13, 1);
 
 -- --------------------------------------------------------
 
@@ -120,15 +90,6 @@ CREATE TABLE `panitia` (
   `password` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `panitia`
---
-
-INSERT INTO `panitia` (`kdPanitia`, `nip`, `nama`, `jabatan`, `password`) VALUES
-(1, '3404011404570000', 'Superadministrator', 'Superadministrator', 'c4ca4238a0b923820dcc509a6f75849b'),
-(3, '3577027001830001', 'Adm BPJS/Casemix', 'Programmer', NULL),
-(5, '3402160505560005', 'Bed Unit Test', 'Pendaftaran', '81dc9bdb52d04dc20036dbd8313ed055');
-
 -- --------------------------------------------------------
 
 --
@@ -140,19 +101,11 @@ CREATE TABLE `siswa` (
   `siswa` varchar(50) NOT NULL,
   `nisn` int(20) DEFAULT NULL,
   `alamat` text,
-  `tanggal_lahir` date DEFAULT NULL
+  `tanggal_lahir` date DEFAULT NULL,
+  `jenis_kelamin` enum('L','P') DEFAULT NULL,
+  `tempat_lahir` varchar(100) DEFAULT NULL,
+  `sudah_di_nilai` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `siswa`
---
-
-INSERT INTO `siswa` (`kdSiswa`, `siswa`, `nisn`, `alamat`, `tanggal_lahir`) VALUES
-(8, 'A1', 123, 'alamat', '2020-02-19'),
-(9, 'A2', NULL, NULL, NULL),
-(10, 'A3', NULL, NULL, NULL),
-(11, 'A4', NULL, NULL, NULL),
-(12, 'A5', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -187,11 +140,11 @@ INSERT INTO `subkriteria` (`kdSubKriteria`, `subKriteria`, `value`, `kdKriteria`
 (48, 'Rp 1.500.000 &lt; C3 &lt;= Rp 2.500.000', 3, 12),
 (49, 'Rp 2.500.000 &lt; C3 &lt;= Rp 3.500.000', 4, 12),
 (50, 'C3 > 3.500.000', 5, 12),
-(51, '1 anak', 1, 13),
-(52, '2 anak', 2, 13),
-(53, '3 anak', 3, 13),
-(54, '4 anak', 4, 13),
-(55, '> 4 anak', 5, 13);
+(66, '1 anak', 1, 16),
+(67, '2 anak', 2, 16),
+(68, '3 anak', 3, 16),
+(69, '4 anak', 4, 16),
+(70, '> 4 anak', 5, 16);
 
 --
 -- Indexes for dumped tables
@@ -249,25 +202,25 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `kdKriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `kdKriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `panitia`
 --
 ALTER TABLE `panitia`
-  MODIFY `kdPanitia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `kdPanitia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `kdSiswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `kdSiswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `subkriteria`
 --
 ALTER TABLE `subkriteria`
-  MODIFY `kdSubKriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `kdSubKriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- Constraints for dumped tables

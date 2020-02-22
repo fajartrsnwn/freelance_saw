@@ -18,17 +18,19 @@
                 }
             }
             ?>
+            <?php
+            $msg = $this->session->flashdata('message');
+            if (isset($msg) && $_GET['nisnCheck']=='false') { ?>
+                <div class="alert alert-danger alert-dismissable">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <?php echo $msg; ?>
+                </div>
+            <?php } ?>
         </div>
 
         <div class="panel panel-default">
             <div class="panel-body">
                 <?php echo form_open('',array('class' => 'form-horizontal'))?>
-                    <div class="form-group">
-                        <label for="siswa">Nama siswa</label>
-                        <input name="siswa" type="text" class="form-control" id="siswa"
-                               value="<?php echo isset($nilaiSiswa[0]->siswa) ? $nilaiSiswa[0]->siswa : ''?>"
-                               placeholder="nama siswa">
-                    </div>
                     <div class="form-group">
                         <label for="siswa">NISN</label>
                         <input name="nisn" type="text" class="form-control" id="siswa"
@@ -36,10 +38,10 @@
                                placeholder="nisn">
                     </div>
                     <div class="form-group">
-                        <label for="siswa">Alamat</label>
-                        <input name="alamat" type="text" class="form-control" id="siswa"
-                               value="<?php echo isset($nilaiSiswa[0]->alamat) ? $nilaiSiswa[0]->alamat : ''?>"
-                               placeholder="Alamat">
+                        <label for="siswa">Nama siswa</label>
+                        <input name="siswa" type="text" class="form-control" id="siswa"
+                               value="<?php echo isset($nilaiSiswa[0]->siswa) ? $nilaiSiswa[0]->siswa : ''?>"
+                               placeholder="nama siswa">
                     </div>
                     <div class="form-group">
                         <label for="siswa">Tanggal Lahir</label>
@@ -47,6 +49,33 @@
                                value="<?php echo isset($nilaiSiswa[0]->tanggal_lahir) ? $nilaiSiswa[0]->tanggal_lahir : ''?>"
                                placeholder="Tanggal Lahir">
                     </div>
+                    <div class="form-group">
+                        <label for="siswa">Tempat Lahir</label>
+                        <input name="tempat_lahir" type="text" class="form-control" id="siswa"
+                               value="<?php echo isset($nilaiSiswa[0]->tempat_lahir) ? $nilaiSiswa[0]->tempat_lahir : ''?>"
+                               placeholder="Tempat lahir">
+                    </div>
+                    <div class="form-group">
+                        <label for="siswa">Alamat</label>
+                        <input name="alamat" type="text" class="form-control" id="siswa"
+                               value="<?php echo isset($nilaiSiswa[0]->alamat) ? $nilaiSiswa[0]->alamat : ''?>"
+                               placeholder="Alamat">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="siswa">Jenis Kelamin</label>
+                        <select name="jenis_kelamin" class="form-control">
+                            <?php if ($nilaiSiswa[0]->jenis_kelamin == 'L') { ?>
+                                <option value="P">Perempuan</option>
+                                <option value="L" selected="">Laki-laki</option>
+                            <?php } else { ?>
+                                <option value="P" selected="">Perempuan</option>
+                                <option value="L">Laki-laki</option>
+                            <?php }?>
+                        </select>
+                    </div>
+
+                    <input type="hidden" name="sudah_di_nilai" value="1">
                 <!-- </div> -->
                 <?php echo form_close()?>
             </div>
@@ -59,6 +88,7 @@
                     <th colspan="5" class="text-center col-md-9">Nilai</th>
                 </tr>
                 <?php
+
                 foreach ($dataView as $item) {
                 ?>
                 <tr>
@@ -75,7 +105,7 @@
                                     if(isset($nilaiSiswa)){
                                         foreach ($nilaiSiswa as $item => $value) {
                                             if($value->kdKriteria == $dataItem->kdKriteria){
-                                                if($value->nilai ==  $dataItem->value){
+                                                if($value->nilai ==  $dataItem->value ) {
                                                     ?>
                                                     checked="checked"
                                                     <?php

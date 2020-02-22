@@ -72,7 +72,7 @@
                                 class="active"
                                 <?php
                             }?>
-                            ><a href="#"><?php echo $this->session->userdata['logged_in']['user_username']?></a></li>
+                            ><a href="<?php echo site_url('superadmin/index/');?><?php echo $this->session->userdata['logged_in']['user_id']?>"><?php echo $this->session->userdata['logged_in']['user_username']?></a></li>
 
                             <li>
                                 <a onclick="return confirm('Apakah Anda yakin?')" href="<?php echo site_url('login/log_out');?>">Logout</a>

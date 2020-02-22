@@ -24,7 +24,10 @@ class MSiswa extends CI_Model{
             'siswa' => $this->siswa,
             'nisn' => $this->nisn,
             'alamat' => $this->alamat,
-            'tanggal_lahir' => $this->tanggal_lahir
+            'tanggal_lahir' => $this->tanggal_lahir,
+            'tempat_lahir' => $this->tempat_lahir,
+            'jenis_kelamin' => $this->jenis_kelamin,
+            'sudah_di_nilai' => $this->sudah_di_nilai,
         );
 
         return $data;
@@ -40,6 +43,21 @@ class MSiswa extends CI_Model{
             }
         }
         return $siswa;
+    }
+
+    public function getNisn($nisn)
+    {
+        // $siswa = array();
+        $this->db->where('nisn', $nisn);
+        $query = $this->db->get($this->getTable());
+
+        if ($query->num_rows() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+        // return $siswa;
     }
 
 

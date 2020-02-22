@@ -3,8 +3,7 @@
 <div class="page-header">
     <h1>Halaman Olah Siswa</h1>
 </div>
-<div class="col-lg-12">
-    <?php
+<?php
     $msg = $this->session->flashdata('message');
     if (isset($msg)) {
         ?>
@@ -15,6 +14,7 @@
         <?php
     }
     ?>
+<div class="col-lg-12">
         <div class="row">
         <div class="form-group">
             <a href="<?php echo site_url('siswa/tambah') ?>" type="button" class="btn btn-primary">Tambah
@@ -32,11 +32,12 @@
                         <thead>
                         <tr>
                             <th class="col-md-1">No</th>
-                            <th class="col-md-3">Siswa</th>
-                            <th class="col-md-3">NISN</th>
-                            <th class="col-md-4">Alamat</th>
-                            <th class="col-md-2">Tanggal Lahir</th>
-                            <th class="col-md-3 ">Action</th>
+                            <th class="col-md-2">NISN</th>
+                            <th class="col-md-2">Siswa</th>
+                            <th class="col-md-1">Jenis Kelamin</th>
+                            <th class="col-md-2">Tempat,Tanggal Lahir</th>
+                            <th class="col-md-3">Alamat</th>
+                            <th class="col-md-2">Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -50,21 +51,22 @@
                                 ?>
                                 <tr>
                                     <td><?php echo $no++ ?></td>
-                                    <td><?php echo $item->siswa ?></td>
                                     <td><?php echo $item->nisn ?></td>
+                                    <td><?php echo $item->siswa ?></td>
+                                    <td><?php echo $item->jenis_kelamin ?></td>
+                                    <td><?php echo $item->tempat_lahir.','.$item->tanggal_lahir ?></td>
                                     <td><?php echo $item->alamat ?></td>
-                                    <td><?php echo $item->tanggal_lahir ?></td>
                                     <td>
                                         <a class="btn btn-primary btn-xs"
                                            href="<?php echo site_url('siswa/tambah/' . $item->kdSiswa) ?>"
                                            role="button">
-                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ubah
+                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         </a>
 
                                         <!-- Indicates a dangerous or potentially negative action -->
                                         <button type="button" data-toggle="modal" class="btn btn-danger btn-xs"
                                                 data-target="#modalDelete">
-                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Hapus
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 
                                         </button>
                                     </td>
                                 </tr>

@@ -365,6 +365,7 @@ class Rangking extends MY_Controller
     private function getDataRangking()
     {
         $sawData = $this->MSAW->getSortTotalByDesc();
+
         $no = 1;
         foreach ($sawData as $item => $value) {
             $dataUpdate = array(
@@ -377,7 +378,7 @@ class Rangking extends MY_Controller
             $this->MSAW->update($dataUpdate, $where);
             $no++;
         }
-        return $this->MSAW->getAll();
+        return $this->MSAW->getSortTotalByDesc();
     }
 
 

@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h1>Halaman panitia</h1>
+    <h1>Halaman superadmin</h1>
 </div>
 <div class="col-md-12">
     <?php echo form_open() ?>
@@ -42,24 +42,13 @@
                     <?php echo form_open('',array('class' => 'form-horizontal'))?>
                     <div class="form-group">
                         <label for="panitia">NIP</label>
-                        <input name="nip" type="number" class="form-control" id="nip"
+                        <input required="" name="nip" type="number" class="form-control" id="nip"
                         value="<?php echo isset($dataView[0]['nip']) ? $dataView[0]['nip'] : ''?>"
                         placeholder="nip">
                     </div>
-                    <div class="form-group">
-                        <label for="panitia">Nama panitia</label>
-                        <input name="nama" type="text" class="form-control" id="panitia"
-                        value="<?php echo isset($dataView[0]['nama']) ? $dataView[0]['nama'] : ''?>"
-                        placeholder="nama panitia">
-                    </div>
-                    <div class="form-group">
-                        <label for="panitia">Jabatan</label>
-                        <input name="jabatan" type="text" class="form-control" id="jabatan"
-                        value="<?php echo isset($dataView[0]['jabatan']) ? $dataView[0]['jabatan'] : ''?>"
-                        placeholder="nama jabatan">
-                    </div>
+                    *<span><i>NIP digunakan untuk login</i></span>
                     <hr>
-                    <span>*Tambah/Update password</span>
+                    <span>*Create/Update password</span>
                     <div class="form-group">
                         <label for="panitia">Password</label>
                         <input name="password" type="password" class="form-control" id="jabatan"
@@ -78,10 +67,6 @@
             <div class="pull-right">
                 <div class="col-md-12">
                     <button class="btn btn-primary" type="submit">Save</button>
-                    <?php if ($this->session->userdata['logged_in']['role'] == 'Administrator') { ?>
-                        <a class="btn btn-danger" href="<?php echo site_url('panitia');?>" role="button">Batal</a>
-                    <?php } ?>
-
                 </div>
             </div>
         </div>
